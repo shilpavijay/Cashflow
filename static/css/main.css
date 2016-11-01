@@ -1,0 +1,21 @@
+.insert {
+	margin-left: 20px;
+}
+
+ul {
+	color: chocolate;
+}
+
+h1 {
+	color:  rgb(128,0,64);
+}
+
+.title {
+	color: green;
+}
+
+button {
+     background-color: Transparent;
+     border: none;
+	 margin-left: -70px;
+}

@@ -11,28 +11,97 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
         
     </head>
-    <body>
+    <body ng-app="expApp" ng-controller="expCtrl">
 
         <h1><center>Cash Flow</center></h1>
+        <br><br>
         <div class="container" align="center">
-        	<div class="col-md-5">
-        	<ul>Description</ul>
+        	<div class="col-md-3">       	
         	</div>
-        	<div class="col-md-5">
-        	<ul>Amount</ul>
-        	</div>
-			<div ng-app="myApp" ng-controller="myCtrl">
-			
-			</div>
+        	<div class="col-md-6">
+
+                <form ng-submit="insertNew()">
+                <input class="insert" type="text" size=25 ng-model="newDesc" placeholder="Title for the expense"></input>
+                <input class="insert" type="text" size=10 ng-model="newAmt" placeholder="Amount"> </input>
+                <input type="submit" value="Add"></input>
+                </form>
+                <br><br>
+
+                <div class="col-md-5" align="right">
+                    <ul class="title"><b>Title</b></ul>
+                    <br>                                         
+                </div>
+
+                <div class="col-md-5">
+                	<ul class="title"><b>Amount</b></ul>
+                    <br>
+                </div>
+
+                <div ng-repeat="x in items">
+                    <div class="col-md-5" align="right">
+                    <ul ng-bind="x.desc"></ul>
+                    </div>
+                    <div class="col-md-5">
+                    <ul ng-bind="x.amt"></ul>
+                    </div>       
+                    <div class="col-md-2" align="left">
+                    <button class="glyphicon glyphicon-remove-circle" ng-click="delItem($index,x)" ng-show="x.xbutton"></button>
+                    </div>
+                </div><br>
+
+                <div class="col-md-5" align="right">
+                    <ul class="title"><b>Total: </b></ul>
+                    <br>                                         
+                </div>
+
+                <div class="col-md-5">
+                    <ul class="title" ng-bind="total"><b></b></ul>
+                    <br>
+                </div>
+                    
+            
+            </div>
+
+            <div class="col-md-3"> 
+            </div>
+			<!-- <div ng-app="myApp" ng-controller="myCtrl">
+			<p ng-bind="firstName"></p>
+			</div> -->
 		</div>
 
        
     <script>
-var app = angular.module("myApp", []);
-app.controller("myCtrl", function($scope) {
-    $scope.firstName = "John";
-    $scope.lastName = "Doe";
-});
+    var app = angular.module("expApp", []);
+    app.controller("expCtrl", function($scope) {
+        // $scope.xbutton = true;
+        $scope.items = [];
+        $scope.total = 0;
+        $scope.insertNew = function() {
+            $scope.items.push({desc: $scope.newDesc.toUpperCase(), amt: $scope.newAmt, xbutton: true});
+            $scope.total += parseInt($scope.newAmt);
+            $scope.newDesc="";
+            $scope.newAmt="";
+        };
+        $scope.delItem = function(key,x) {  
+            x.xbutton = false;
+            $scope.total -= parseInt(x.amt);
+            var oldlist = $scope.items
+            $scope.items = []
+            angular.forEach(oldlist,function(x){
+                if(x.xbutton) $scope.items.push(x);
+            });
+
+            // $scope.items[key].xbutton = false;  
+            // $scope.total -= parseInt($scope.items[key].amt);
+            // delete $scope.items[key];
+            // var b = angular.element( document.querySelector( '#divID' ) );
+            // var b = document.getElementById(key);
+            
+            // console.log(ele);
+            // b.remove();   //removes element
+        };
+        
+    });
 </script>
 
 {% block footer %}
