@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from cashflow import *
 import sqlalchemy as sa
 from sqlalchemy import Column, Integer, String, ForeignKey
@@ -16,4 +16,11 @@ from models import *
 
 @app.route('/')
 def mainpg():
+	return render_template('main.html')
+
+@app.route('/s/r/a')	
+def inData():
+	post = request.get_json()
+	# param = post.get('name')
+	print post
 	return render_template('main.html')
