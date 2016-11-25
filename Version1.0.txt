@@ -17,8 +17,13 @@ done-from UI
 done-from DB.
 
 **Users
--login page
--
--show userwise expenses
+done- design login page 
+- login page in angular 
+- handle login in flask
+- show user-wise expenses
+- do relavant db changes for the above
+
+**beautification (mainpg)
+-bootstrap for top/side bar on mainpg - show username and more options.
 
 
