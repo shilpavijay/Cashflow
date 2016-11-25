@@ -1,0 +1,24 @@
+V1.0:
+
+**Add Expenses
+done-validate before data entry
+done-integ with mysql, flask 
+done- http post not working - 404/405 error
+-align add button
+done-block tag - footer
+
+**show expenses
+done-fix the api to show exp
+done-render it in angular - get request
+
+
+**delete an expense
+done-from UI
+done-from DB.
+
+**Users
+-login page
+-
+-show userwise expenses
+
+

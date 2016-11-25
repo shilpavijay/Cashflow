@@ -1,12 +1,5 @@
-from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from cashflow import db
 from werkzeug import generate_password_hash, check_password_hash
-from cashflow import *
-
-app = Flask(__name__)
-app.secret_key = 'development key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:a@localhost/calcexp'
-db = SQLAlchemy(app)
 
 class User(db.Model):
   __tablename__ = 'users'
@@ -27,3 +20,15 @@ class User(db.Model):
    
   def check_password(self, password):
     return check_password_hash(self.pwdhash, password)
+
+class Expenses(db.Model):
+  __tablename__ = 'expenses'
+  uid = db.Column(db.Integer, primary_key = True)
+  expname = db.Column(db.String(100))
+  amount = db.Column(db.Float)
+
+  def __init__(self,expname,amount):
+    self.expname = expname.title()
+    self.amount = amount
+
+db.create_all()    
