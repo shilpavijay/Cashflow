@@ -7,19 +7,27 @@ done- http post not working - 404/405 error
 -align add button
 done-block tag - footer
 
-**show expenses
+DONE**show expenses
 done-fix the api to show exp
 done-render it in angular - get request
 
 
-**delete an expense
+DONE**delete an expense
 done-from UI
 done-from DB.
 
 **Users
 done- design login page 
 - login page in angular 
-- handle login in flask
+*link login to ajax req
+*Register
+	done- check pwd and cfrm pwd
+	done - make usr, email,pwd field mandatory
+	-link register to post request	
+*action - lead to /main/
+
+
+- handle login in flask - implement @login required dec
 - show user-wise expenses
 - do relavant db changes for the above
 
