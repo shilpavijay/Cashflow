@@ -27,6 +27,7 @@ def mainpg():
 @app.route('/main/')
 def mainpg():
 	return render_template('main.html')	
+	
 
 @app.route('/api/insertexp/', methods=['POST', 'GET'])	
 def inpData():	
@@ -49,9 +50,9 @@ def delData():
 	exp=request.get_json(force=True)
 	# delexp = Expenses(exp['exp_name'],exp['exp_amt'])
 	delexp = Expenses.query.filter_by(expname=exp['exp_name']).first()
-	print exp['exp_name']
+	print(exp['exp_name'])
 	
-	print delexp
+	print (delexp)
 	db.session.delete(delexp)
 	db.session.commit()
 	return render_template('main.html')	
